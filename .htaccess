@@ -1,0 +1,14 @@
+#这是分布式的apache的配置文件，该配置仅仅对当前项目有效
+<IfModule rewrite_module>
+	#开启
+	RewriteEngine on
+	#重写的条件就是：请求的路径不是目录、不是文件的时候才会采用下面的规则解析
+	RewriteCond %{REQUEST_FILENAME} !-d
+	RewriteCond %{REQUEST_FILENAME} !-f
+	
+	RewriteRule	(.*) index.php/$1
+</IfModule>
+
+<IfModule dir_module>
+    DirectoryIndex index.html index.php
+</IfModule>
