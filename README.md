@@ -1,2 +1,2 @@
-# TZframeword
+# TZframework
 Custom simple framework
