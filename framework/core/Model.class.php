@@ -1,197 +1,216 @@
 <?php
-/*
- * 这是基础模型类
- * 主要是封装其他模型间公共的代码
- */
 namespace framework\core;
-use framework\dao\DAOPDO;
 
-class Model
-{
-    protected  $dao;
-    protected  $true_table;		//真实的表名
-    protected  $pk;				//主键字段
-    protected $error = array();
+use framework\dao\DAOPDO;
+class Model {
+// 保存数据库的对象
+protected $_dao;
+// 调用该模型的表名
+protected $_true_table;
+// 调用该模型的主键
+protected $_true_pk;
+ /* 保存错误信息 */
+protected $_error = array();
+
+
+// 循环遍历错误
+public function showErr() {
+    $err_str = '';
+    /*循环遍历错误信息  */
+    foreach ($this->_error as $v) {
+        $err_str = $v;
+    }
+    return $err_str;
+}
+
+// 构造函数初始化数据库对象，表名，主键
+public function __construct() {
+    /* 初始化数据库对象 */
+    $this->initPDO();
+    /* 初始化数据库表*/
+    $this->initTable();
+    /* 初始化数据表主键 */
+    $this->initFiled();
+}
+//初始化数据库的对象
+private function initPDO() {
+    $config = array(
+        'host'  =>  '',
+        'user'  =>  '',
+        'pwd'   =>  '',
+        'port'  =>  ,
+        'charset'   =>  '',
+        'dbname'    =>  '',
+    );
+    /* 创建数据库对象 */
+    $this->_dao = DAOPDO::getSingleton($config);
+}
+
+//初始化数据库主表
+private function initTable() {
     
-    public function showError()
-    {
-    	$err_str = '';
-    	foreach($this->error as $row){
-    		$err_str .= $row.'<br>';
-    	}
-    	return $err_str;
-    }    
+    /* 调用该基础模型的数据表 */
+    $this->_true_table = $this->_logic_table;
     
-    public function __construct()
-    {
-        $this -> initDAO();
-        //初始化数据表实际的表名
-        $this -> initTable();
-        //初始化主键字段
-        $this->initField();
-    }
-    //初始化dao对象的方法
-    private function initDAO()
-    {
-        //插入数据
-        $option = $GLOBALS['config'];
-        $this -> dao = DAOPDO::getSingleton($option);
-    }
-    //初始化实际表（前缀+表名）
-    private function initTable()
-    {
-    	if(isset($this->logic_table)){
-    		$this -> true_table = $GLOBALS['config']['prefix'].$this->logic_table;
-    		return;
-    	}
-    	//执行到这里，说明没有设置logic_table属性
-    	//我们就得分析出来
-    	//获得当前模型对象是哪个类实例化出来的
-    	$className = get_class($this);
-    	
-    	//可以使用basename（）函数获得最后一个分隔符后面的内容
-    	
-    	$className = basename($className);
-    	
-    	//将Model替换掉
-    	$table_name = str_replace('Model', '', $className);
-    	//使用正则替换,先找到前面是小写字母的大写字母，在前面加上_
-    	$reg = '/(?<=[a-z])([A-Z])/';
-    	$table_name = preg_replace($reg, '_$1', $table_name);
-    	
-    	$this -> true_table = $GLOBALS['config']['prefix'].strtolower($table_name);
-    }
-    //初始化数据表的主键字段
-    private function initField()
-    {
-    	$sql = "DESC `$this->true_table`";
-    	$result = $this -> dao -> fetchAll($sql);
-    	
-    	foreach ($result as $key=>$v){
-    		if($v['Key']=='PRI'){
-    			//说明这个字段就是主键
-    			$this -> pk = $v['Field'];
-    		}
-    	}
-    }
-    //封装自动插入的操作
-    /* 参数[以ecshop为例]：
-     * $data = array(
-   	   		'goods_name'	=>	'诺基亚',
-   	   		'shop_price'	=>	1800
-   	   );
-     */
-    public function insert($data)
-    {
-    	//最终的sql：
-    	//$sql = "insert into `ecs_goods`(`goods_name`,`shop_price`) VALUES('苹果','3900')";
-    	$sql = "INSERT INTO `$this->true_table`";
-    	//拼接字段名称（先获得数组的下标，数组的下标就是对应的字段名称）
-    	$fields = array_keys($data);
-    	//获得数组的值，通过array_values()
-    	$values = array_values($data);
-    	
-    	//字段名称两边加上 `` 反引号（通过foreach循环给下标的两侧加上反引号）
-    	//array_map()函数是使用参数1这个函数，对参数2这个数组进行处理，会将参数2数组元素的值一个一个的传递进去
-    	$field_list = array_map(function($v){
-    		return '`'.$v.'`';
-    	}, $fields);
-    	$field_list = '('.implode(',', $field_list).')';
-    	$sql .= $field_list;
-    	
-    	//拼接sql语句中VALUES部分，说明：因为这一部分会将结果直接保存到数据库,在保存之前，我们要对数据进行安全处理
-    	$field_values = array_map(array($this->dao,"quoteValue"), $values);
-    	$field_values = implode(',', $field_values);
-    	
-    	$sql .= " VALUES($field_values)";
-    	    	
-    	$this -> dao -> exec($sql);
-    	
-    	return $this -> dao -> lastInsertId();
-    }
-	
-    /*
-     * delete($pk_value)
-     * 自动删除的操作，参数就是删除的记录的主键的值
-     */
-    public function delete($pk_value)
-    {
-    	$sql = "DELETE FROM `$this->true_table` WHERE `$this->pk`=$pk_value";
-    	return $this -> dao -> exec($sql);
-    }
-    /*
-     * update()
-     * 自动更新的操作，执行更新语句
-     * 最终：UPDATE `goods` SET `goods_name`='诺基亚',`shop_price`=1900 WHERE `goods_id`=503
-     * 参数1：更新的数据  array(goods_name=>'诺基亚',shop_price=>1900)
-     * 参数2：更新的条件  array(goods_id=>503)
-     */
-    public function update($data,$where=null)
-    {
-    	//先判断一下条件是否为空，如果为空就不能更新
-    	if(is_null($where)){
-    		return false;
-    	}else{
-    		//不为空才能更新
-    		$field = array_keys($where);
-    		$value = array_values($where);
-    		$where_str = '`'.$field[0].'`'."='{$value[0]}'";
-    	}
-    	//拼接更新的字段(字段名称要加上反引号、字段的值要使用安全处理，引号转义)
-    	$fields = array_keys($data);
-    	$values = array_values($data);
-    	//字段名称使用反引号包裹
-    	$fields_list = array_map(function($v){
-    		return '`'.$v.'`';
-    	},$fields);
-    	//字段的值使用安全处理，引号转义
-    	$values_list = array_map(array($this->dao,"quoteValue"),$values);
-    	//拼接字段名称、字段的值
-    	$field = '';
-    	foreach($fields_list as $k=>$v){
-    		$field .= $v.'='.$values_list[$k].',';
-    	}
-    	//"`goods_name`='诺基亚',`shop_price`='1900',"
-    	//substr() 字符串截取，第三个参数是负数就表示从后面向前面数
-    	$field = substr($field, 0,-1);
-    	
-    	$sql = "UPDATE `$this->true_table` SET $field WHERE $where_str";
-    	
-    	return $this -> dao -> exec($sql);
+}
+
+//初始化数据表主键
+private function initFiled() {
+    /* 查询表结构的语句 */
+    $sql = "DESC `$this->_true_table`";
+    /* 发送sql语句,查询所有字段 */
+    $row = $this->_dao->fetchAll($sql);
+    
+    foreach ($row as $k => $v) {
+        
+        if($v['Key'] == 'PRI') {
+            
+            $this->_true_pk = $v['Field'];
+        }
     }
     
-    /*
-     * find()
-     * 自动查询的操作
-     * 最终：SELECT `goods_name`,`shop_price` FROM `goods` WHERE `goods_name` = '诺基亚';
-     * 参数1：查询的字段名称,如果为空的话，就表示查询所有的字段,例如：array('goods_name','shop_price')
-     * 参数2：查询的条件，如果为空的话，就表示没有约束条件，查询所有数据，例如：array('goods_name'=>'诺基亚')
-     */
-    public function find($fields=null,$where=null)
-    {
-    	if(is_null($fields)){
-    		$fields = '*';
-    	}else{
-    		$fields = array_map(function($v){
-    			return '`'.$v.'`';
-    		},$fields);
-    		$fields = implode(',', $fields);
-    	}
-    	
-    	//拼接where条件
-    	if(is_null($where)){
-    		$where_str = '';
-    	}else{
-    		foreach($where as $k=>$v){
-    			//$k就是字段名称，$v就是字段的值
-    			$str = '`'.$k.'`'."= ".$this->dao->quoteValue($v);
-    		}
-    		$where_str = "WHERE $str";
-    	}
-    	$sql = "SELECT $fields FROM `$this->true_table` $where_str";
-    	
-    	//执行sql语句
-    	return $this -> dao -> fetchRow($sql);
-    }
+}
+
+// 自动增删改查
+
+/**
+ * 〈自动更新数据〉
+ * <insert into 表名  （字段1，字段2） values(值1，值2)>
+ * @param [$data]     [带有字段和值的关联数组]
+ * @return[int:插入的主键]
+ */
+public function insert($data) {
+
+    /* 将数组解析为键 */
+    $filed_key = array_keys($data);
+        //循环数组，加上反引号
+        $filed_key = array_map(function($v) {
+            return '`'.$v.'`';
+        }, $filed_key);
+        //将数组转换为字符串,并加上括号
+        $key = '('.implode(',', $filed_key).')';
+        
+    /* 将数组解析为值 */
+        $filed_values = array_values($data);
+        //循环数组，加上包裹
+        $filed_values = array_map(array($this->_dao,"quoteValue"), $filed_values);
+        //将数组转换为字符串,并加上括号
+        $values = '('.implode(',', $filed_values).')';
+        
+        /* 拼接sql语句 */
+        $sql = "INSERT INTO `$this->_true_table` $key VALUES$values";
+      
+        /*  执行非查询sql语句*/
+        $this->_dao ->exec($sql);
+        /*  返回插入的主键*/
+        return $this->_dao->lastInsertID();
+        
+}
+
+/**
+ * 〈自动更新操作〉
+ * 〈updata 表名 set 字段1=值，字段2=值 where 字段=值〉
+ * @param [$data]     [更新的字段，关联数组]
+ * @param [$where]     [更新的条件,关联数组]
+ * @return[int：影响的行数]
+ */
+public function update($data,$where=null) {
     
+    /* 判断条件是否为空，为空则退出 */
+    if(is_null($where)) {
+        return false;
+    } else {
+        /* 不为空，则解析键和值 */
+        $where_key = array_keys($where);
+        $where_value = array_values($where);
+        /* 将字段手动加上引号并组合 */
+        $where_str = '`'.$where_key[0].'`'.'='.$where_value[0];
+    }
+
+    /* 解析字段数组为键和值 */
+    $fileds_key = array_keys($data);
+    $fileds_values = array_values($data);
+        /* 字段名称使用反引号 */
+        $fileds_key = array_map(function($v) {
+            return '`'.$v.'`';
+        }, $fileds_key);
+        /* 值使用引号转义 */
+        $fileds_values = array_map(array($this->_dao,"quoteValue"), $fileds_values);
+    
+    /* 循环 拼接 字段和值 */
+        $fileds_str = '';
+        foreach($fileds_key as $k => $v) {
+            $fileds_str .=  $v.'='.$fileds_values[$k].',';
+        }
+    /* 去除最后一个逗号 */
+        $filed = substr($fileds_str, 0,-1);
+    
+    /* 拼接sql语句 */
+        $sql = "UPDATE `$this->_true_table` SET $filed WHERE $where_str";
+       
+    /* 执行sql语句 ，并返回影响的行数*/
+   return $this->_dao->exec($sql);
+   
+}
+
+/**
+ * 〈自动删除操作〉
+ * 〈delete from 表名 where 主键=id〉
+ * @param [$id]     [主键的id值]
+ * @return[int:返回影响的行数]
+ */
+public function delete($id) {
+    /* 拼接sql语句 */
+    $sql = "DELETE FROM `$this->_true_table` WHERE `$this->_true_pk`=$id";
+    
+    return $this->_dao ->exec($sql);
+}
+
+/**
+ * 〈自动查询操作〉
+ * 〈select *(字段1，字段2) from 表名 where 字段=值〉
+ * @param [$data]     [仅仅包含字段的索引数组]
+ * @param [$where]     [包含条件的关联数组]
+ * @return[array:一行记录]
+ */
+public function selectRow($data=null,$where=null) {
+    
+    /*判断查询的字段数组是否为空  */
+    if(is_null($data)) {
+        $fileds = '*';
+    } else {
+        
+        /* 不为空，将字段加反引号，转换为字符串*/
+        
+        $fileds = array_map(function($v) {
+            return '`'.$v.'`';
+        }, $data);
+        
+        $fileds = implode(',', $fileds);
+    }
+        
+    /* 判断查询的条件是否为空 */
+    if(is_null($where)) {
+        $where_str = '';
+    } else {
+        /* 不为空;循环转义和包裹 */
+        $where_str = '';
+        foreach ($where as $k => $v) {
+            $where_str .= '`'.$k.'`'.'='.$this->_dao->quoteValue($v);
+        }
+        
+        /* 加上where字段 */
+        $where_str = "WHERE ".$where_str;
+        
+        /* 拼接sql语句 */
+        $sql = "select $fileds from `$this->_true_table` $where_str";
+       
+        /*  执行*/
+        return $this->_dao->fetchRow($sql);
+    }
+       
+}
+
+
+
 }

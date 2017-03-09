@@ -1,26 +1,21 @@
 <?php
-    namespace framework\dao;
-    //如何定义接口,接口不实现功能，只是定义有哪些功能
-    interface I_DAO
-    {
-        //查询所有数据
-        public function fetchAll($sql);
-        
-        //查询一条记录
-        public function fetchRow($sql);
-        
-        //查询一个字段的值
-        public function fetchColumn($sql);
-        
-        //执行增删改的操作
-        public function exec($sql);
-        
-        //返回刚刚执行插入语句返回主键的值
-        public function lastInsertId();
-        
-        //执行增删改受影响的记录数
-        public function affectedRows();
-    	
-        //安全处理，对引号转义并包裹
-        public function quoteValue($data);
-    }
+namespace framework\dao;
+
+interface I_DAO {
+// 2.执行非查询
+public function exec($sql);
+// 3.执行查询
+public function query($sql);
+// 4.执行查询获取单列数据
+public function fetchColumn($sql);
+// 5.执行查询获取单条记录数据
+public function fetchRow($sql);
+// 6.执行获取所有数据
+public function fetchAll($sql);
+// 7.查询受影响（删除和修改）的行数
+public function affectRows();
+// 8.返回插入的主键
+public function lastInsertID();
+// 9.安全处理，引号包裹
+public function quoteValue($str);
+}
