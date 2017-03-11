@@ -1,0 +1,670 @@
+<!DOCTYPE html>
+<!-- saved from url=(0142)http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000#reply -->
+<html xmlns:itranswarp="http://www.itranswarp.com/" xmlns:wb="http://open.weibo.com/wb" class="uk-notouch"><!--
+
+--><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>讨论 - 廖雪峰的官方网站</title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="keywords" content="javascript,node,jquery,git,python,java,sql,linux,ios,android,教程,软件,编程,开发,运维,云计算,网络,互联网">
+    <meta name="description" content="研究互联网产品和技术，提供原创中文精品教程">
+    <meta property="x-nav" content=" /discuss ">
+    <link rel="alternate" href="http://www.liaoxuefeng.com/feed" title="廖雪峰的官方网站" type="application/rss+xml">
+    
+    <meta property="og:type" content="webpage">
+    <meta property="og:url" content="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000">
+    <meta property="og:title" content="what">
+    <meta property="og:description" content="what">
+
+    <!-- BEGIN CSS COMPRESS -->
+    <link rel="stylesheet" href="../../../public/home/css/codemirror.css">
+    <link rel="stylesheet" href="../../../public/home/css/highlight.css">
+    <link rel="stylesheet" href="../../../public/home/css/itranswarp.css">
+    <!-- END CSS COMPRESS -->
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/static/themes/default/css/ie.css" />
+    <![endif]-->
+    
+    <script src="./讨论 - 廖雪峰的官方网站_files/underscore.js.下载"></script><script src="./讨论 - 廖雪峰的官方网站_files/hm.js.下载"></script><script src="./讨论 - 廖雪峰的官方网站_files/all.js.下载"></script>
+    
+    <script id="tplComment" type="text/plain">
+        <div class="uk-comment">
+            <div class="uk-comment-header" style="margin-bottom:0">
+                <a target="_blank" href="/user/{ user.id }"><img class="uk-comment-avatar uk-border-circle x-avatar" src="{ user.image_url }" width="50" height="50" alt=""></a>
+                <h4 class="uk-comment-title"><a target="_blank" href="/discuss/{ board_id }/{ id }">{ name }</a></h4>
+                <div class="uk-comment-meta"><a target="_blank" href="/user/{ user.id }">{ user.name }</a> created at { created_at.toSmartDate() }, Last updated at { updated_at.toSmartDate() }</div>
+            </div>
+            <div class="uk-comment-body x-auto-content">
+                { content|safe }
+            </div>
+        </div>
+    </script>
+
+    <script id="tplCommentReply" type="text/plain">
+        <div class="uk-comment">
+            <div class="uk-comment-header" style="margin-bottom:0">
+                <a target="_blank" href="/user/{ user.id }"><img class="uk-comment-avatar uk-border-circle x-avatar" src="{ user.image_url }" width="50" height="50" alt=""></a>
+                <div class="uk-comment-meta"><a target="_blank" href="/user/{ user.id }">{ user.name }</a></div>
+                <div class="uk-comment-meta">Created at { created_at.toSmartDate() }, Last updated at { updated_at.toSmartDate() }</div>
+            </div>
+            <div class="uk-comment-body x-auto-content">
+                { content|safe }
+            </div>
+        </div>
+    </script>
+
+    <script id="tplCommentInfo" type="text/plain">
+        <li>
+            <div class="x-comment-info">
+                <hr>
+                <a target="_blank" class="uk-button uk-button-small" href="/discuss/{ board_id }/{ id }"><i class="uk-icon-list-ul"></i> View Full Discuss</a>
+                &nbsp;
+                <a target="_blank" class="uk-button uk-button-small" href="/discuss/{ board_id }/{ id }#reply"><i class="uk-icon-reply"></i> Reply This Topic</a>
+            </div>
+        </li>
+    </script>
+
+    <script id="tplCommentArea" type="text/plain">
+        <div class="x-display-if-signin">
+            <p><button id="comment-make-button" type="button" class="uk-button uk-button-primary"><i class="uk-icon-comment"></i> 发表评论</button></p>
+            <form id="comment-form" class="uk-form" style="display:none;">
+                <fieldset>
+                    <div class="uk-alert uk-alert-danger" style="display:none"></div>
+                    <div class="uk-form-row">
+                        <label>标题:</label>
+                    </div>
+                    <div class="uk-form-row">
+                        <input type="text" name="name" maxlength="100" style="width:100%">
+                    </div>
+                    <div class="uk-form-row">
+                        <label>内容:</label>
+                    </div>
+                    <div class="uk-form-row x-textarea">
+                    </div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-check"></i> 发布</button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="uk-button x-cancel"><i class="uk-icon-close"></i> 取消</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </script>
+
+    <style id="x-doc-style">.x-display-if-signin {}
+.x-display-if-not-signin { display: none; }
+</style>
+    <script>
+        var g_time = parseFloat('1483199450850');
+        var g_signins = [{"id":"weibo","icon":"weibo","name":"使用新浪微博登录"}];
+//
+        var g_user = null;
+//
+    </script>
+
+
+
+
+
+    
+
+<style>
+.x-topic-visible {
+    display: block;
+}
+</style>
+
+<script id="tplReplyArea" type="text/plain">
+        <div class="x-display-if-signin">
+            <p><button id="reply-make-button" type="button" class="uk-button uk-button-primary"><i class="uk-icon-reply"></i> Make a Reply</button></p>
+            <form id="reply-form" class="uk-form" style="display:none;">
+                <fieldset>
+                    <div class="uk-alert uk-alert-danger" style="display:none"></div>
+                    <div class="uk-form-row">
+                        <label>Reply: what</label>
+                    </div>
+                    <div class="uk-form-row">
+                        <label>Content:</label>
+                    </div>
+                    <div class="uk-form-row x-textarea">
+                    </div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-check"></i> Reply</button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="uk-button x-cancel"><i class="uk-icon-close"></i> Cancel</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+</script>
+
+<script>
+
+function initReplyArea(topic_id) {
+    console.log('auth success, display reply form...');
+    $('#x-reply-area').html($('#tplReplyArea').html());
+    var $makeReply = $('#reply-make-button');
+    var $replyForm = $('#reply-form');
+    var $postReply = $replyForm.find('button[type=submit]');
+    var $cancelReply = $replyForm.find('button.x-cancel');
+    $makeReply.click(function () {
+        $replyForm.showFormError();
+        $replyForm.show();
+        $replyForm.find('div.x-textarea').html('<textarea></textarea>');
+        var htmleditor = UIkit.htmleditor($replyForm.find('textarea').get(0), {
+            mode: 'split',
+            maxsplitsize: 600,
+            markdown: true
+        });
+        $makeReply.hide();
+    });
+    $cancelReply.click(function () {
+        $replyForm.find('div.x-textarea').html('');
+        $replyForm.hide();
+        $makeReply.show();
+    });
+    $replyForm.submit(function (e) {
+        e.preventDefault();
+        $replyForm.postJSON('/api/topics/' + topic_id + '/replies', {
+            content: $replyForm.find('textarea').val()
+        }, function (err, result) {
+            if (err) {
+                return;
+            }
+            gotoPage(10 > 1 ? 1 : 2);
+        });
+    });
+}
+
+function onAuthSuccess() {
+    initReplyArea('001479811991218a4c5cd5796874f37836c1a09b74977b8000');
+}
+
+$(function () {
+    if (g_user !== null) {
+        initReplyArea('001479811991218a4c5cd5796874f37836c1a09b74977b8000');
+    }
+});
+
+</script>
+
+
+
+<style>
+.x-center {
+    margin: 0;
+}
+
+
+
+
+.x-center {
+    margin-right: 316px;
+    padding-right: 15px;
+}
+
+
+</style>
+
+<!-- BEGIN custom_header -->
+<script src="./讨论 - 廖雪峰的官方网站_files/wb.js.下载" type="text/javascript" charset="utf-8"></script>
+
+<script>
+// git: add app link:
+$(function() {
+  if (location.pathname.indexOf('/wiki/0013739516305929606dd18361248578c67b8067c8c017b000')===0) {
+    $('.x-wiki-info').parent().css('position', 'relative').append('<a href="https://itunes.apple.com/cn/app/git-jiao-cheng/id876420437" target="_blank" style="display:block;width:135px;height:40px;position:absolute;right:10px;top:10px;"><img src="/static/img/download-on-the-app-store.png" /></a>');
+  }
+  // add new:
+  $('#ul-navbar a[href="/webpage/java"]').parent().append('<img style="position:absolute;right:-10px;top:3px;z-index:999" src="/files/attachments/001477919415261ebc91072244149e0ab69f60ae2abe39f000/l">');
+});
+</script>
+
+<script>
+// python 3: add 2.7 link:
+$(function() {
+  if (location.pathname.indexOf('/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000')===0) {
+    $('.x-wiki-info').parent().css('position', 'relative').append('<a href="/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000" target="_blank" style="display:block;position:absolute;right:10px;top:10px;">2.7旧版教程</a>');
+  }
+});
+</script>
+
+<script>
+// python 2.7: add py3 link:
+$(function() {
+  if (location.pathname.indexOf('/wiki/001374738125095c955c1e6d8bb493182103fac9270762a000')===0) {
+    $('#main .x-container').prepend('<div class="uk-alert uk-alert-danger">您目前正在学习的2.7版本的Python教程已过期，请立刻前往最新的Python 3 教程：<a href="/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000" class="uk-button uk-button-success">我要学 Python 3</a></div>');
+  }
+});
+</script>
+
+<script>
+// the ad:
+$(function() {
+  var _a_pros = [
+    {
+      id: 'zhufeng',
+      href: 'http://www.zhufengpeixun.cn/customize/node/index.html',
+      img: '/files/attachments/00145587235874321e448795b804a1e8356eb97a33f81c5000/0'
+    },
+    {
+      id: 'maiziedu',
+      href: 'http://www.maizitime.com/pages/adpc/python.html?yy=lxfpy',
+      img: '/files/attachments/001468226657174e6b109d28e84442798a2a4451e7b2dea000/0'
+    },
+    {
+      id: 'xitu',
+      href: 'http://gold.xitu.io/welcome?utm_source=liaoxuefeng&utm_medium=banner&utm_content=gaoshou&utm_campaign=q3_personal',
+      img: '/files/attachments/00146917760141137418dc990d3459d99ea875458da0ea4000/0'
+    },
+    {
+      id: 'julyedu',
+      href: 'https://www.julyedu.com/course/getDetail/52?source=lxf',
+      img: '/files/attachments/001481933824671ed85b81402b241ef9e6e9716f888fab2000/0'
+    }
+  ];
+
+  var _b_pros = {
+    id: 'julyedu',
+    href: 'https://www.julyedu.com/course/getDetail/54?source=lxf',
+    img: '/files/attachments/0014819338317037950e01f10654851b5a01b577f0de094000/0'
+  };
+
+  var _c_pros = {
+    id: 'badou',
+    href: 'http://www.badouxueyuan.cn/read/',
+    img: '/files/attachments/001480933090560a0eac37026724ae8b0b5eae3d4df8d82000/0'
+  };
+
+  $('div.x-promo-b').html('<div style="width:300px;height:600px"><a target="_blank" href="' + _b_pros.href + '" onclick="_hmt.push([\'_trackEvent\', \'' + _b_pros.id + '\', \'click\', \'clicked\']);"><img src="' + _b_pros.img + '" style="width:300px;height:600px"></a></div>' + '<div style="width:300px;height:250px"><a target="_blank" href="' + _c_pros.href + '" onclick="_hmt.push([\'_trackEvent\', \'' + _c_pros.id + '\', \'click\', \'clicked\']);"><img src="' + _c_pros.img + '" style="width:300px;height:250px"></a></div>');
+
+  var i, s = '';
+  for (i=0; i<_a_pros.length; i++) {
+    s = s + '<div style="width:336px;height:280px;float:left;"><a target="_blank" href="' + _a_pros[i].href + '" onclick="_hmt.push([\'_trackEvent\', \'' + _a_pros[i].id + '\', \'click\', \'clicked\']);"><img src="' + _a_pros[i].img + '" style="width:336px;height:280px"></a></div>';
+  }
+  if (location.pathname.indexOf('/wiki/')===0 || location.pathname.indexOf('/article/')===0) {
+    s = s + '<div style="clear: both;"></div>';
+    $('.x-wiki-content').after(s);
+    $('.x-article-content').after(s);
+  }
+  else {
+    $('#the-promos').prepend(s);
+  }
+});
+</script>
+
+<script>
+// add share:
+$(function() {
+  if (location.pathname.indexOf('/wiki/')===0) {
+    $('.x-wiki-content').find('a[href^=http]').attr('target', '_blank');
+    if (!window.hurry) {
+      $('.x-wiki-content').after('<h3>感觉本站内容不错，读后有收获？</h3><p><a target="_blank" href="/webpage/donate" class="uk-button uk-button-primary"><i class="uk-icon-cny"></i> 我要小额赞助，鼓励作者写出更好的教程</a></p><h3>还可以分享给朋友</h3><p><wb:share-button appkey="1391944217" addition="full" type="button" ralateUid="1658384301" picture_search="false" pic="' + $('meta[property="og:image"]').attr('content') + '"></wb:share-button></p>');
+    } else {
+      $('.x-wiki-content').after('<h3>等待时间太久？</h3><p><a target="_blank" href="/webpage/donate" class="uk-button uk-button-primary"><i class="uk-icon-cny"></i> 我要催促作者更新教程</a></p><h3>还可以分享给朋友</h3><p><wb:share-button appkey="1391944217" addition="full" type="button" ralateUid="1658384301" picture_search="false" pic="' + $('meta[property="og:image"]').attr('content') + '"></wb:share-button></p>');
+    }
+  }
+  if (location.pathname.indexOf('/discuss/')===0) {
+    var r = parseQueryString();
+    if (!r.page || r.page==='1') {
+      $('div.x-content>div.uk-comment:first div.uk-comment-body').append('<hr><p class="uk-text-muted">想要问题快速得到解答？分享给朋友试试：</p><p><wb:share-button appkey="1391944217" addition="full" type="button" ralateUid="1658384301" picture_search="false"></wb:share-button></p>');
+    }
+  }
+});
+</script>
+
+<script>
+// article: add share:
+$(function() {
+  if (location.pathname.indexOf('/article/')===0) {
+    $('.x-article-content').find('a[href^=http]').attr('target', '_blank');
+    $('.x-article-content').after('<h3>感觉本站内容不错，读后有收获？</h3><p><a target="_blank" href="/webpage/donate" class="uk-button uk-button-primary"><i class="uk-icon-cny"></i> 我要小额赞助，鼓励作者写出更好的文章</a></p><h3>还可以分享给朋友</h3><p><wb:share-button appkey="1391944217" addition="full" type="button" ralateUid="1658384301" picture_search="false" pic="' + $('meta[property="og:image"]').attr('content') + '"></wb:share-button></p>');
+  }
+});
+</script>
+
+<script>
+// all:
+$(function() {
+  $('.x-footer-copyright').find('p').append('<br>由<a target="_blank" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DuVSSwb68TEYcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAouhd4loqGpDWNI3LssOJ1ZIW%2FH7aX8LI9nQCCjrrrN3wYAeXhmRFOHMh3DDj7e5Hudn1BbglxZYxUhy8exlzcpAFEHVckI7b93srg%2FL%2FeD3keUEnoKELDlWYetMiZZgV%2BSx6OrKqagyklzFeKMz7Cd4Qek9OyREefaKWlxOHSq5XF%2B87KN7TKeiZ%2BQMlGz6FQ%3D%3D">阿里云</a>托管<br><a href="#0" onclick="location.assign(decodeURIComponent(\'moc.36104%fxlksaA3%otliam\'.split(\'\').reverse().join(\'\')))">广告合作</a>');
+  $('.x-footer').append('<hr><div style="text-align:center"><p>友情链接: <a href="http://www.shi-ci.com" target="_blank">中华诗词</a> - <a href="http://s.click.taobao.com/t?e=m%3D2%26s%3DjPaT%2Fmi2tL4cQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAlFz4nQbUpKuV%2FZ67c680w5IW%2FH7aX8LI9nQCCjrrrN3wYAeXhmRFOHMh3DDj7e5Hudn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a> - <a href="http://mitpress.mit.edu/sicp/full-text/book/book.html" target="_blank">SICP</a> - <a href="http://www.4clojure.com/" target="_blank">4clojure</a></p></div>');
+});
+</script>
+
+<script>
+// tongji:
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?2efddd14a5f2b304677462d06fb4f964";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+<script>
+$(function() {
+  var x = document.createElement('script');
+  x.src = '/static/js/underscore.js';
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(x, s);
+});
+</script>
+
+<!-- END custom_header -->
+<script charset="UTF-8" src="./讨论 - 廖雪峰的官方网站_files/bundle.js.下载"></script><script charset="UTF-8" src="./讨论 - 廖雪峰的官方网站_files/iframeWidget.js.下载"></script></head>
+
+<body><iframe id="sina_anywhere_iframe" style="display: none;" src="./讨论 - 廖雪峰的官方网站_files/saved_resource.html"></iframe>
+    <div class="x-goto-top" style="display: none;">
+        <div class="x-arrow"></div>
+        <div class="x-stick"></div>
+    </div>
+
+    <div id="header" class="uk-navbar uk-navbar-attached">
+        <div class="uk-container x-container">
+            <div class="uk-navbar uk-navbar-attached">
+                
+                <a href="http://www.liaoxuefeng.com/" class="uk-navbar-brand uk-visible-large">廖雪峰的官方网站</a>
+                <a href="http://www.liaoxuefeng.com/" class="uk-navbar-brand uk-hidden-large"><i class="uk-icon-home"></i></a>
+                <ul id="ul-navbar" class="uk-navbar-nav uk-hidden-small">
+                    
+                    <li><a href="http://www.liaoxuefeng.com/category/0013738748415562fee26e070fa4664ad926c8e30146c67000">编程</a></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/category/0013738748248885ddf38d8cd1b4803aa74bcda32f853fd000">读书</a></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/webpage/java">Java教程</a><img style="position:absolute;right:-10px;top:3px;z-index:999" src="./讨论 - 廖雪峰的官方网站_files/l"></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">JavaScript教程</a></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Python教程</a></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>
+                    
+                    <li class="uk-active"><a href="http://www.liaoxuefeng.com/discuss">问答</a></li>
+                    
+                    <li><a href="http://www.liaoxuefeng.com/webpage/donate">赞助</a></li>
+                    
+                </ul>
+                
+                <ul class="uk-navbar-nav uk-visible-small">
+                    <li class="uk-parent" data-uk-dropdown="">
+                        <a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000#0"><i class="uk-icon-navicon"></i></a>
+                        <div class="uk-dropdown uk-dropdown-navbar">
+                            <ul class="uk-nav uk-nav-navbar">
+                                
+                                <li><a href="http://www.liaoxuefeng.com/category/0013738748415562fee26e070fa4664ad926c8e30146c67000">编程</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/category/0013738748248885ddf38d8cd1b4803aa74bcda32f853fd000">读书</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/webpage/java">Java教程</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000">JavaScript教程</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/wiki/0014316089557264a6b348958f449949df42a6d3a2e542c000">Python教程</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000">Git教程</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/discuss">问答</a></li>
+                                
+                                <li><a href="http://www.liaoxuefeng.com/webpage/donate">赞助</a></li>
+                                
+                            </ul>
+                        </div>
+                    </li>
+                </ul>
+                
+
+<!--
+                <div class="uk-navbar-content x-hidden-tiny">
+                    <form id="form-search" class="uk-form uk-margin-remove uk-display-inline-block">
+                        <div class="uk-form-icon">
+                            <i class="uk-icon-search"></i>
+                            <input type="text" placeholder="Search">
+                        </div>
+                    </form>
+                </div>
+-->
+
+                <div class="uk-navbar-flip">
+                    <ul class="uk-navbar-nav">
+                        <li class="uk-parent x-display-if-signin" data-uk-dropdown="">
+                            <a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000#0"><i class="uk-icon-user"></i><span class="x-hidden-tiny">&nbsp;</span><span class="x-user-name x-hidden-tiny">sunny忆</span></a>
+                            <div class="uk-dropdown uk-dropdown-navbar">
+                                <ul class="uk-nav uk-nav-navbar">
+                                    <li><a target="_blank" href="http://www.liaoxuefeng.com/me/profile"><i class="uk-icon-cogs"></i> 个人资料</a></li>
+                                    <li class="uk-nav-divider"></li>
+                                    <li><a href="http://www.liaoxuefeng.com/auth/signout"><i class="uk-icon-power-off"></i> 登出</a></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="x-display-if-not-signin uk-hidden-small"><a href="javascript:showSignin()"><i class="uk-icon-sign-in"></i> 登录</a></li>
+                        <li class="x-display-if-not-signin uk-visible-small"><a href="javascript:showSignin()"><i class="uk-icon-sign-in"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div><!-- // header -->
+
+    <div id="main">
+        <div class="x-placeholder-50"><!-- placeholder --></div>
+        <div class="x-placeholder"><!-- placeholder --></div>
+        <div class="uk-container x-container">
+            <div class="uk-grid">
+                <div class="x-body-before uk-width-1-1">
+                    
+                </div>
+            </div>
+            <div class="uk-grid">
+                <div class="uk-width-1-1">
+                
+                
+                    <div class="x-sidebar-right">
+                        <div class="x-sidebar-right-top">
+                            <!-- __snippets__.sidebar_right_top -->
+                        </div>
+                        <div class="x-sidebar-right-content">
+                            
+
+
+                        </div>
+                        <div class="x-sidebar-right-bottom">
+                            <h3>关于作者</h3>
+<iframe width="100%" height="90" class="share_self" frameborder="0" scrolling="no" src="./讨论 - 廖雪峰的官方网站_files/index.html"></iframe>
+
+
+
+<div>
+<script async="" src="./讨论 - 廖雪峰的官方网站_files/adsbygoogle.js.下载"></script>
+<!-- 300x600 for lxf -->
+<ins class="adsbygoogle" style="display:inline-block;width:300px;height:600px" data-ad-client="ca-pub-6727358730461554" data-ad-slot="3785924714"></ins>
+<script>
+(adsbygoogle = window.adsbygoogle || []).push({});
+</script>
+</div>
+
+<div>
+<script type="text/javascript">
+var cpro_id="u2227283";
+(window["cproStyleApi"] = window["cproStyleApi"] || {})[cpro_id]={at:"3",rsi0:"300",rsi1:"250",pat:"17",tn:"baiduCustNativeAD",rss1:"#FFFFFF",conBW:"1",adp:"1",ptt:"0",titFF:"%E5%BE%AE%E8%BD%AF%E9%9B%85%E9%BB%91",titFS:"",rss2:"#000000",titSU:"0"}
+</script>
+<script src="./讨论 - 廖雪峰的官方网站_files/c.js.下载" type="text/javascript"></script>
+</div>
+
+                        </div>
+                    </div>
+                
+
+                    <div class="x-center">
+                        <div>
+                            
+                        </div>
+                        <div class="x-content" style="width:100%">
+                            
+    <div class="uk-alert x-board-nav">
+        <a href="http://www.liaoxuefeng.com/discuss">讨论</a>
+        /
+        <a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000">Git</a>
+        /
+        what
+    </div>
+
+    <div class="uk-margin uk-clearfix">
+        <a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000" class="uk-button uk-float-left"><i class="uk-icon-arrow-left"></i> 返回</a>
+    </div>
+
+    <div class="uk-margin">
+        <h3 style="display:inline">what</h3>
+        
+        <a target="_blank" href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" style="margin-left:1em;">问题来源</a>
+        
+    </div>
+
+
+
+    
+    <div class="uk-comment">
+        <div class="x-anchor"><a name="001479811991218a4c5cd5796874f37836c1a09b74977b8000"></a></div>
+        <div class="uk-comment-header">
+            <a href="http://www.liaoxuefeng.com/user/00147981241754208d58425fe144e029af494b2c1e4e0b6000"><img class="uk-comment-avatar uk-border-circle x-avatar" src="./讨论 - 廖雪峰的官方网站_files/006dVxIZjw8f8ogvbt3xfj30ig0igwf8.jpg" width="50" height="50" alt=""></a>
+            <h4 class="uk-comment-title"><a href="http://www.liaoxuefeng.com/user/00147981241754208d58425fe144e029af494b2c1e4e0b6000">Jin木_奇</a></h4>
+            <div class="uk-comment-meta">#1 Created at <span class="x-smartdate" date="1479811991218">11-22 18:53</span></div>
+        </div>
+        <div class="uk-comment-body uk-margin">
+            
+            <p>这教程在哪？？！</p>
+
+            
+        <hr><p class="uk-text-muted">想要问题快速得到解答？分享给朋友试试：</p><p><wb:share-button appkey="1391944217" addition="full" type="button" ralateuid="1658384301" picture_search="false"><iframe src="./讨论 - 廖雪峰的官方网站_files/share_social.html" width="312" height="62" frameborder="0" scrolling="no" marginheight="0"></iframe></wb:share-button></p></div>
+    </div>
+
+
+    <hr>
+
+    <div class="x-page">
+        
+    
+        <ul class="uk-pagination">
+        
+            
+            <li class="uk-active"><span>1</span></li>
+            
+        
+        </ul>
+    
+
+    </div>
+
+    <div class="x-anchor"><a name="reply"></a></div>
+
+    <h3>Reply</h3>
+
+    <div class="x-display-if-not-signin">
+        <p><button type="button" class="uk-button" onclick="showSignin()"><i class="uk-icon-signin"></i> Sign In to Make a Comment</button></p>
+    </div>
+
+    <div id="x-reply-area">
+        <div class="x-display-if-signin">
+            <p><button id="reply-make-button" type="button" class="uk-button uk-button-primary" style="display: none;"><i class="uk-icon-reply"></i> Make a Reply</button></p>
+            <form id="reply-form" class="uk-form" style="">
+                <fieldset>
+                    <div class="uk-alert uk-alert-danger uk-hidden" style="display:none"></div>
+                    <div class="uk-form-row">
+                        <label>Reply: what</label>
+                    </div>
+                    <div class="uk-form-row">
+                        <label>Content:</label>
+                    </div>
+                    <div class="uk-form-row x-textarea"><div class="uk-htmleditor uk-clearfix" data-mode="split"><div class="uk-htmleditor-navbar"><ul class="uk-htmleditor-navbar-nav uk-htmleditor-toolbar"><li><a data-htmleditor-button="bold" title="Bold" data-uk-tooltip=""><i class="uk-icon-bold"></i></a></li>
+<li><a data-htmleditor-button="italic" title="Italic" data-uk-tooltip=""><i class="uk-icon-italic"></i></a></li>
+<li><a data-htmleditor-button="code" title="code" data-uk-tooltip=""><i class="uk-icon-code"></i> 插入代码</a></li>
+<li><a data-htmleditor-button="link" title="Link" data-uk-tooltip=""><i class="uk-icon-link"></i></a></li>
+<li><a data-htmleditor-button="blockquote" title="Blockquote" data-uk-tooltip=""><i class="uk-icon-quote-right"></i></a></li>
+<li><a data-htmleditor-button="listUl" title="Unordered List" data-uk-tooltip=""><i class="uk-icon-list-ul"></i></a></li>
+<li><a data-htmleditor-button="listOl" title="Ordered List" data-uk-tooltip=""><i class="uk-icon-list-ol"></i></a></li></ul><div class="uk-htmleditor-navbar-flip"><ul class="uk-htmleditor-navbar-nav"><li class="uk-htmleditor-button-code"><a>Markdown</a></li><li class="uk-htmleditor-button-preview"><a>Preview</a></li><li><a data-htmleditor-button="fullscreen"><i class="uk-icon-expand"></i></a></li></ul></div></div><div class="uk-htmleditor-content"><div class="uk-htmleditor-code"><textarea data-uk-check-display="1" style="display: none;"></textarea><div class="CodeMirror cm-s-default CodeMirror-wrap" style="height: 500px;"><div style="overflow: hidden; position: relative; width: 3px; height: 0px; top: 14px; left: 14px;"><textarea autocorrect="off" autocapitalize="off" spellcheck="false" tabindex="0" style="position: absolute; padding: 0px; width: 1000px; height: 1em; outline: none;"></textarea></div><div class="CodeMirror-hscrollbar" style="left: 0px;"><div style="height: 100%; min-height: 1px; width: 0px;"></div></div><div class="CodeMirror-vscrollbar"><div style="min-width: 1px; height: 0px;"></div></div><div class="CodeMirror-scrollbar-filler"></div><div class="CodeMirror-gutter-filler"></div><div class="CodeMirror-scroll" tabindex="-1"><div class="CodeMirror-sizer" style="margin-left: 0px; min-height: 22px;"><div style="position: relative; top: 0px;"><div class="CodeMirror-lines"><div style="position: relative; outline: none;"><div class="CodeMirror-measure"></div><div class="CodeMirror-measure"></div><div style="position: relative; z-index: 1;"></div><div class="CodeMirror-cursors"><div class="CodeMirror-cursor" style="left: 4px; top: 0px; height: 14px;">&nbsp;</div></div><div class="CodeMirror-code"><pre class=""><span style="padding-right: 0.1px;"><span>​</span></span></pre></div></div></div></div></div><div style="position: absolute; height: 30px; width: 1px; top: 22px;"></div><div class="CodeMirror-gutters" style="display: none; height: 480px;"></div></div></div></div><div class="uk-htmleditor-preview" style="height: 500px;"><div></div></div></div></div></div>
+                    <div class="uk-form-row">
+                        <button type="submit" class="uk-button uk-button-primary"><i class="uk-icon-check"></i> Reply</button>
+                        &nbsp;&nbsp;
+                        <button type="button" class="uk-button x-cancel"><i class="uk-icon-close"></i> Cancel</button>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+</div>
+
+
+
+                        </div>
+                        <div>
+                         
+
+</div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="uk-grid">
+                <div class="x-body-after uk-width-1-1">
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div id="footer">
+        <div class="x-footer uk-container x-container">
+            <hr>
+            <div class="uk-grid">
+                <div class="x-footer-copyright uk-width-small-1-2 uk-width-medium-1-3">
+                    <p>
+                        <a href="http://www.liaoxuefeng.com/">廖雪峰的官方网站</a>©2015
+                        <br>
+                        Powered by <a href="http://js.itranswarp.com/" target="_blank">iTranswarp.js</a>
+                    <br>由<a target="_blank" href="http://s.click.taobao.com/t?e=m%3D2%26s%3DuVSSwb68TEYcQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAouhd4loqGpDWNI3LssOJ1ZIW%2FH7aX8LI9nQCCjrrrN3wYAeXhmRFOHMh3DDj7e5Hudn1BbglxZYxUhy8exlzcpAFEHVckI7b93srg%2FL%2FeD3keUEnoKELDlWYetMiZZgV%2BSx6OrKqagyklzFeKMz7Cd4Qek9OyREefaKWlxOHSq5XF%2B87KN7TKeiZ%2BQMlGz6FQ%3D%3D">阿里云</a>托管<br><a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000#0" onclick="location.assign(decodeURIComponent(&#39;moc.36104%fxlksaA3%otliam&#39;.split(&#39;&#39;).reverse().join(&#39;&#39;)))">广告合作</a></p>
+                </div>
+                <div class="uk-width-small-1-2 uk-width-medium-1-3 x-hidden-tiny">
+                    <a href="http://www.liaoxuefeng.com/feed" target="_blank" class="uk-icon-button uk-icon-rss" data-uk-tooltip="" title="Subscribe the RSS"></a>
+                    <a href="https://github.com/michaelliao/itranswarp.js" target="_blank" class="uk-icon-button uk-icon-github" data-uk-tooltip="" title="View source code on GitHub"></a>
+                    <a href="https://twitter.com/liaoxuefeng" target="_blank" class="uk-icon-button uk-icon-twitter" data-uk-tooltip="" title="Follow author on Twitter"></a>
+                    <a href="http://www.weibo.com/liaoxuefeng" target="_blank" class="uk-icon-button uk-icon-weibo uk-visible-large uk-hidden-medium" data-uk-tooltip="" title="Follow author on Weibo"></a>
+                </div>
+                <div class="uk-width-medium-1-3 uk-hidden-small">
+                    <p>
+                        <a href="https://github.com/michaelliao/itranswarp.js/issues" target="_blank">Feedback</a>
+                        <br>
+                        <a href="https://github.com/michaelliao/itranswarp.js/blob/master/LICENSE" target="_blank">License</a>
+                    </p>
+                </div>
+            </div>
+        <hr><div style="text-align:center"><p>友情链接: <a href="http://www.shi-ci.com/" target="_blank">中华诗词</a> - <a href="http://s.click.taobao.com/t?e=m%3D2%26s%3DjPaT%2Fmi2tL4cQipKwQzePCperVdZeJviEViQ0P1Vf2kguMN8XjClAlFz4nQbUpKuV%2FZ67c680w5IW%2FH7aX8LI9nQCCjrrrN3wYAeXhmRFOHMh3DDj7e5Hudn1BbglxZYxUhy8exlzcq9AmARIwX9K%2BnbtOD3UdznPV1H2z0iQv9NkKVMHClW0QbMqOpFMIvnvjQXzzpXdTHGJe8N%2FwNpGw%3D%3D" target="_blank">阿里云</a> - <a href="http://mitpress.mit.edu/sicp/full-text/book/book.html" target="_blank">SICP</a> - <a href="http://www.4clojure.com/" target="_blank">4clojure</a></p></div></div>
+    </div>
+
+    <div id="modal-signin" class="uk-modal">
+        <div class="uk-modal-dialog">
+            <a class="uk-modal-close uk-close"></a>
+            <div class="uk-modal-header">
+                <h2>Please Sign In</h2>
+            </div>
+            <p>You can sign in directly without register:</p>
+            
+            <h3><a href="http://www.liaoxuefeng.com/auth/from/weibo"><i class="uk-icon-weibo"></i> 使用新浪微博登录</a></h3>
+            
+            <p>You need authorize to allow connect to your social passport for the first time.</p>
+        </div>
+    </div>
+
+    <div id="oldBrowser">
+        <div class="uk-alert uk-alert-danger" data-uk-alert="">
+            <a href="http://www.liaoxuefeng.com/discuss/001409195939432748a2c9fae3846bc98b3c2a547fa321b000/001479811991218a4c5cd5796874f37836c1a09b74977b8000#0" class="uk-alert-close uk-close"></a>
+            <p>
+                WARNING: You are using an old browser that does not support HTML5.
+                Please choose a modern browser (<a href="http://www.google.com/chrome" target="_blank">Chrome</a> / <a href="http://www.mozilla.org/firefox/" target="_blank">Firefox</a> / <a href="http://www.apple.com/safari/" target="_blank">Sarafi</a>) to get a good experience.
+            </p>
+        </div>
+    </div>
+
+
+</body></html>

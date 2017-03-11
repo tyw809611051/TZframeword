@@ -1,0 +1,98 @@
+<{extends file="common/layout.html"}>
+<{block name="admin_content"}>
+    <div class="aw-content-wrap">
+        <form enctype="multipart/form-data" method="post" id="category_form" action="?m=admin&c=Category&a=update">
+        <input type="hidden" value="" name="cat_id">
+        <input type="hidden" name="old_cat_logo" value="">
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">分类编辑</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                  <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">文章标题:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" placeholder="" name="art_title" class="form-control" value="<{$art_row['art_title']}>">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">上级目录：</span>
+                                <div class="col-sm-5 col-xs-8">
+                                     <select class="form-control" name="parent_id">
+                                        <option value="0">默认目录</option>>
+                                   <{foreach $art_tree as $v}>
+                                        <option value="<{$v['art_id']}>"
+                                        <{if $v['art_id'] == $art_row['parent_id']}>selected<{/if}>>
+                                             <{$v['art_title']|indent:$v['leven']:'&nbsp&nbsp&nbsp'}>                                   
+                                        </option>
+                                  <{foreachelse}>
+                                            <option>没有目录信息</option>
+                                   <{/foreach}>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">文章分类:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <select class="form-control" name="cat_id">
+                                        
+                                   <{foreach $cate_name as $v}>
+                                        <option value="<{$v['cat_id']}>"
+                                        <{if $v['cat_id'] == $art_row['cat_id']}>selected<{/if}>>
+                                             <{$v['cat_name']}>                                   
+                                        </option>
+                                    <{foreachelse}>
+                                            <option>没有分类信息</option>
+                                   <{/foreach}>
+                                    </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                      <div class="form-group">
+                      <tr>
+                        <td>
+                                <span class="col-sm-4 col-xs-4 control-label">文章内容:</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="col-sm-5 col-xs-8">
+                                    <script id="editor" type="text/plain" style="width:1024px;height:500px;">
+                                        <{$art_row['art_content']}>
+                                    </script>
+                            </div>
+                           
+                        </td>
+                    </tr>
+                     </div>
+
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="submit"  class="btn btn-primary center-block" value="保存设置">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+
+
+<{/block}>

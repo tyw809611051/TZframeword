@@ -1,5 +1,8 @@
-<?php
-
+<?php 
 return array(
-    'dbname'    =>  '',
-);
+	'public'	=>	'/Myblog/application/public/',
+	'dbname'	=>	'blog',
+	);
+
+
+ ?>

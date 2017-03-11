@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta content="webkit" name="renderer">
+    <meta content="IE=edge,Chrome=1" http-equiv="X-UA-Compatible">
+    <meta content="width=device-width,initial-scale=1,maximum-scale=1" name="viewport">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="blank" name="apple-mobile-web-app-status-bar-style">
+    <meta content="telephone=no" name="format-detection">
+    <title>分类管理-有问必答</title>
+    <link href="<{PUBLIC_PATH}>home/css/bootstrap.css?v=20151125" rel="stylesheet" type="text/css">
+    <link href="<{PUBLIC_PATH}>home/css/icon.css?v=20151125" rel="stylesheet" type="text/css">
+    <link href="<{PUBLIC_PATH}>admin/css/common.css?v=20151125" rel="stylesheet" type="text/css">
+    <script src="<{PUBLIC_PATH}>home/js/jquery.2.js?v=20151125" type="text/javascript"></script>
+    <script src="<{PUBLIC_PATH}>home/js/jquery.form.js?v=20151125" type="text/javascript"></script>
+    <script src="<{PUBLIC_PATH}>admin/js/framework.js?v=20151125" type="text/javascript"></script>
+    <script src="<{PUBLIC_PATH}>admin/js/global.js?v=20151125" type="text/javascript"></script>
+    <!-- 自定义后台JS -->
+    <script src="<{PUBLIC_PATH}>common/js/confirm.js"></script>
+    <script src="<{PUBLIC_PATH}>common/js/common.js"></script>
+    <script src="<{PUBLIC_PATH}>home/js/custom/custom.js"></script>
+    <!-- 富文本编辑器 -->
+     <script type="text/javascript" charset="utf-8" src="<{THIRD_PATH}>ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="<{THIRD_PATH}>ueditor/ueditor.all.min.js"> </script>
+    <!--建议手动加在语言，避免在ie下有时因为加载语言失败导致编辑器加载失败-->
+    <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
+    <script type="text/javascript" charset="utf-8" src="<{THIRD_PATH}>ueditor/lang/zh-cn/zh-cn.js"></script>
+    <!--[if lte IE 8]>
+    <script type="text/javascript" src="<{PUBLIC_PATH}>home/js/respond.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+    <div class="aw-header">
+        <button class="btn btn-sm mod-head-btn pull-left">
+         <i class="icon icon-bar"></i>
+        </button>
+
+        <div class="mod-header-user">
+            <ul class="pull-right">
+
+                <li class="dropdown username">
+                    <a data-toggle="dropdown" class="dropdown-toggle" href="">
+                    
+                        <span class="caret"></span>
+                    </a>
+
+                    <ul class="dropdown-menu pull-right mod-user">
+                        <li>
+                            <a target="_blank" href="">
+                                <i class="icon icon-user"></i>
+                                账户
+                            </a>
+                        </li>
+
+                        <li>
+                            <a href="login.html">
+                                <i class="icon icon-logout"></i>
+                                退出
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div id="aw-side" class="aw-side ps-container">
+        <div class="mod">
+            <div class="mod-logo">
+             
+                <h1>后台管理</h1>
+            </div>
+
+            <div class="mod-message">
+                <div class="message">
+                    <a title="首页" target="_top" href="<{framework\core\Factory::U('home/Index/index')}>" class="btn btn-sm">
+                        <i class="icon icon-home"></i>
+                    </a>
+
+                    <a title="退出" href="login.html" class="btn btn-sm">
+                        <i class="icon icon-logout"></i>
+                    </a>
+                </div>
+            </div>
+
+            <ul class="mod-bar">
+                <input type="hidden" val="0" id="hide_values">
+                <li>
+                    <a class=" icon icon-ul" href="index.html">
+                        <span>摘要信息</span>
+                    </a>
+                </li>
+
+                <li>
+                    <a data="icon" class=" icon icon-reply active" href="javascript:;">
+                        <span>内容管理</span>
+                    </a>
+
+                    <ul class="hide" style="display: block;">
+                        <li>
+                            <a class="active" href="<{framework\core\Factory::U('admin/Category/index')}>">
+                                <span>分类管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<{framework\core\Factory::U('admin/Article/index')}>">
+                                <span>文章管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<{framework\core\Factory::U('admin/Discuss/index')}>">
+                                <span>话题管理</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="<{framework\core\Factory::U('admin/Message/add')}>">
+                                <span>采集管理</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a data="icon" class=" icon icon-user" href="javascript:;">
+                        <span>用户管理</span>
+                    </a>
+
+                    <ul class="hide">
+                        <li>
+                            <a href="user.html">
+                                <span>用户列表</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="role.html">
+                                <span>用户角色</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a data="icon" class="icon icon-setting" href="javascript:;">
+                        <span>全局设置</span>
+                    </a>
+
+                    <ul class="hide">
+                        <li>
+                            <a href="site.html">
+                                <span>站点信息</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="regedit.html">
+                                <span>注册访问</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="mail.html">
+                                <span>邮件设置</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a data="icon" class=" icon icon-job" href="javascript:;">
+                        <span>工具</span>
+                    </a>
+
+                    <ul class="hide">
+                        <li>
+                            <a href="tool.html">
+                                <span>系统维护</span>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+        <div class="ps-scrollbar-x-rail" style="width: 235px; display: none; left: 0px; bottom: 3px;">
+            <div class="ps-scrollbar-x" style="left: 0px; width: 0px;"></div>
+        </div>
+        <div class="ps-scrollbar-y-rail" style="top: 0px; height: 607px; display: inherit; right: 0px;">
+            <div class="ps-scrollbar-y" style="top: 0px; height: 560px;"></div>
+        </div>
+    </div>
+
+	<!--继承内容-->
+   <{block name="admin_content"}><{/block}>
+
+
+    <div class="aw-footer">
+        <p>
+            Copyright &copy; 2016-2099 - Powered By
+            
+        </p>
+    </div>
+
+    <!-- 富文本JS -->
+<script type="text/javascript">
+
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+
+    
+    function isFocus(e){
+        alert(UE.getEditor('editor').isFocus());
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function setblur(e){
+        UE.getEditor('editor').blur();
+        UE.dom.domUtils.preventDefault(e)
+    }
+    function insertHtml() {
+        var value = prompt('插入html代码', '');
+        UE.getEditor('editor').execCommand('insertHtml', value)
+    }
+    function createEditor() {
+        enableBtn();
+        UE.getEditor('editor');
+    }
+    function getAllHtml() {
+        alert(UE.getEditor('editor').getAllHtml())
+    }
+    function getContent() {
+        var arr = [];
+        arr.push("使用editor.getContent()方法可以获得编辑器的内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getContent());
+        alert(arr.join("\n"));
+    }
+    function getPlainTxt() {
+        var arr = [];
+        arr.push("使用editor.getPlainTxt()方法可以获得编辑器的带格式的纯文本内容");
+        arr.push("内容为：");
+        arr.push(UE.getEditor('editor').getPlainTxt());
+        alert(arr.join('\n'))
+    }
+    function setContent(isAppendTo) {
+        var arr = [];
+        arr.push("使用editor.setContent('欢迎使用ueditor')方法可以设置编辑器的内容");
+        UE.getEditor('editor').setContent('欢迎使用ueditor', isAppendTo);
+        alert(arr.join("\n"));
+    }
+    function setDisabled() {
+        UE.getEditor('editor').setDisabled('fullscreen');
+        disableBtn("enable");
+    }
+
+    function setEnabled() {
+        UE.getEditor('editor').setEnabled();
+        enableBtn();
+    }
+
+    function getText() {
+        //当你点击按钮时编辑区域已经失去了焦点，如果直接用getText将不会得到内容，所以要在选回来，然后取得内容
+        var range = UE.getEditor('editor').selection.getRange();
+        range.select();
+        var txt = UE.getEditor('editor').selection.getText();
+        alert(txt)
+    }
+
+    function getContentTxt() {
+        var arr = [];
+        arr.push("使用editor.getContentTxt()方法可以获得编辑器的纯文本内容");
+        arr.push("编辑器的纯文本内容为：");
+        arr.push(UE.getEditor('editor').getContentTxt());
+        alert(arr.join("\n"));
+    }
+    function hasContent() {
+        var arr = [];
+        arr.push("使用editor.hasContents()方法判断编辑器里是否有内容");
+        arr.push("判断结果为：");
+        arr.push(UE.getEditor('editor').hasContents());
+        alert(arr.join("\n"));
+    }
+    function setFocus() {
+        UE.getEditor('editor').focus();
+    }
+    function deleteEditor() {
+        disableBtn();
+        UE.getEditor('editor').destroy();
+    }
+    function disableBtn(str) {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            if (btn.id == str) {
+                UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+            } else {
+                btn.setAttribute("disabled", "true");
+            }
+        }
+    }
+    function enableBtn() {
+        var div = document.getElementById('btns');
+        var btns = UE.dom.domUtils.getElementsByTagName(div, "button");
+        for (var i = 0, btn; btn = btns[i++];) {
+            UE.dom.domUtils.removeAttributes(btn, ["disabled"]);
+        }
+    }
+
+    function getLocalData () {
+        alert(UE.getEditor('editor').execCommand( "getlocaldata" ));
+    }
+
+    function clearLocalData () {
+        UE.getEditor('editor').execCommand( "clearlocaldata" );
+        alert("已清空草稿箱")
+    }
+</script>
+</body>
+</html>

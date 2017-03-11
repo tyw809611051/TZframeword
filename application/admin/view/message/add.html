@@ -1,0 +1,59 @@
+<{extends file="common/layout.html"}>
+<{block name="admin_content"}>
+
+    <div class="aw-content-wrap">
+        <form  method="post" id="category_form" action="<{framework\core\Factory::U('admin/Message/addHandle')}>" enctype="multipart/form-data">
+        
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">添加分类</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-4 control-label" style="text-align: center;margin-top: 10px ">采集网址:</span>
+                                <div class="col-sm-8 col-xs-8">
+                                    <input type="text" placeholder="请填写完整网址" name="url" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-4 control-label" style="text-align: center;margin-top: 10px ">采集表达式:</span>
+                                <div class="col-sm-8 col-xs-8">
+                                    <input type="text" placeholder="请填写正则表达式" name="reg" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                     <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-4 control-label" style="text-align: center;margin-top: 10px ">选择目录:</span>
+                                <div class="col-sm-8 col-xs-8">
+                                <select name="art_title" id="" class="form-control">
+                                    <option value="">默认目录</option>
+                                </select>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn btn-primary center-block" value="采集话题">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+<{/block}>

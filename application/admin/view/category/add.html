@@ -1,0 +1,110 @@
+<{extends file="common/layout.html"}>
+<{block name="admin_content"}>
+
+    <div class="aw-content-wrap">
+        <form  method="post" id="category_form" action="<{framework\core\Factory::U('admin/Category/addHandle')}>" enctype="multipart/form-data" onsubmit="return verifyCatAdd()">
+        
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">添加分类</span>
+                </h3>
+            </div>
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类名称:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" placeholder="" ="默认分类" name="cat_name" class="form-control">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类描述:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                     
+                                    <input type="text" placeholder="" ="分类描述" name="cat_desc" class="form-control">
+								
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">分类图标：</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="file" name="cat_pic" class="form-control file">
+                                </div>
+                            </div>
+                             <!-- 上传显示图片 -->
+                            <div id="info" ></div>
+                            <div id="preview"></div>
+                        </td>
+                    </tr>
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="submit" class="btn btn-primary center-block" value="添加">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+            </div>
+        </form>
+    </div>
+
+<script type="text/javascript">
+    var fileInput = document.getElementsByClassName('file')[0];
+    var preview = document.getElementById('preview');
+    var info = document.getElementById('info');
+  
+    // 监听change事件:
+    fileInput.addEventListener('change', function () {
+    // 清除背景图片:
+    preview.style.backgroundImage = '';
+    
+    // 检查文件是否选择:
+    if (!fileInput.value) {
+        info.innerHTML = '没有选择文件';
+        return;
+    }
+    // 获取File引用:
+    var file = fileInput.files[0];
+
+    // 获取File信息:
+
+    info.innerHTML = '文件名: ' + file.name + '<br>' +
+                     '文件大小: ' + file.size/1024+'kb' + '<br>';
+                     
+    if (file.type !== 'image/jpeg' && file.type !== 'image/png' && file.type !== 'image/gif') {
+        alert('不是有效的图片文件!');
+        return;
+    }
+
+    // 读取文件:
+    var reader = new FileReader();
+   
+    reader.onload = function(e) {
+        var
+            data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'    
+        preview.style.width = '300px';
+        preview.style.height = '150px';
+        
+        preview.style.backgroundImage = 'url(' + data + ')';
+         preview.style.backgroundSize = 'cover';
+        
+    };
+    // 以DataURL的形式读取文件
+    reader.readAsDataURL(file);
+},false);
+</script>
+<{/block}>

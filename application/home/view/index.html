@@ -1,0 +1,369 @@
+﻿<!DOCTYPE HTML>
+
+<html>
+
+<head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+<title>芷江</title>
+
+<meta content="芷江" name="keywords" />
+
+<meta content="芷江" name="description" />
+
+<link href="<{PUBLIC_PATH}>home/css/base.css" rel="stylesheet" type="text/css">
+
+<link href="<{PUBLIC_PATH}>home/css/pagename.css" rel="stylesheet" type="text/css">
+
+<script type="text/javascript" src="<{PUBLIC_PATH}>home/js/jquery-1.6.2.min.js"></script>
+
+<script type="text/javascript" src="<{PUBLIC_PATH}>home/js/jquery.SuperSlide.2.1.js"></script>
+
+</head>
+
+
+
+<body>
+
+
+
+<!--header开始--> 
+
+<div class="header"> 
+
+	<div class="w1000">
+
+    	<p>你好，欢迎光临芷江！</p>
+
+        <div class="contact"><a href="index.html">设为首页</a> <a href="index.html">加入收藏</a></div>
+
+	</div>
+
+</div>
+
+
+
+
+
+<div class="w1000">
+
+	<div class="header_bottom">
+
+			<a href="index.html"><img src="images/logo.jpg" width="294" height="49" alt="" title="芷江"></a>
+
+       		<ul>
+
+            	 <{foreach $art_list as $title}>
+        <li><a href="<{framework\core\Factory::U('home/Article/detail',['id'=>$title['cat_id'],'art_id'=>$title['art_id']])}>" target="_blank"><{$title['art_title']}></a></li>
+        <{/foreach}>
+
+     		</ul>  
+
+    </div>       
+
+</div>
+
+
+<!--header结束--> 
+
+
+<div class="container"> 		
+
+		<!--banner开始-->
+
+		<div class="banner"> 
+
+            <div class="bd">
+
+                <ul>
+
+                    <li style="background:url(images/banner_4.jpg) no-repeat center top;"></li>
+
+                    <li style="background:url(images/banner_2.jpg) no-repeat center top;"></li>
+
+                    <li style="background:url(images/banner_2.jpg) no-repeat center top;"></li>
+
+                </ul>
+
+            </div>
+
+            <div class="hd">
+
+                <ul>
+
+                    <li></li>
+
+                    <li></li>
+
+                </ul>
+
+            </div>
+
+            <a class="prev" href="javascript:void(0)"></a>
+
+            <a class="next" href="javascript:void(0)"></a>
+
+        </div>
+		 <!--调用JS模块图片滚动--> 
+        <script type="text/javascript">jQuery(".banner").slide({ titCell:".hd ul", mainCell:".bd ul", effect:"fold",delayTime:1000,interTime:5000,autoPlay:true, autoPage:true, trigger:"click" });</script>
+
+		<!--banner结束--> 
+
+		
+
+		<!--content开始-->
+
+		<div class="content"> 
+
+			<p class="p_tit1">走进南宁</p>	
+
+			<ul class="ul_jishu clearfix">
+
+            	<li class="fl">
+
+                	<a href="template/introduce.html"><img src="images/pic_1.jpg" width="291" height="126" alt="" title=""></a>
+
+<p>
+                       <div class="uk-margin uk-clearfix">
+        <div style="float:left">
+            <a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank">
+            <img src="<{PUBLIC_PATH}>static/category/<{$row['cat_pic']}>">
+            </a>
+        </div>
+        <div class="uk-margin" style="margin-left:20px; float:left">
+            <h3><a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank"><{$row['tour_name']}></a></h3>
+            <p><{$row['cat_desc']}></p>
+        </div>
+    </div> </p>
+
+                </li>
+
+            	<li class="fl ml20">
+
+                	<a href="template/Culture.html"><img src="images/pic_2.jpg" width="291" height="126" alt="" title=""></a>
+
+<p>
+   <div class="uk-margin uk-clearfix">
+        <div style="float:left">
+            <a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank">
+            <img src="<{PUBLIC_PATH}>static/category/<{$row['cat_pic']}>">
+            </a>
+        </div>
+        <div class="uk-margin" style="margin-left:20px; float:left">
+            <h3><a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank"><{$row['new_name']}></a></h3>
+            <p><{$row['cat_desc']}></p>
+        </div>
+    </div>
+
+                </li>
+
+                <li class="fr">
+
+                	<a href="template/historic.html"><img src="images/pic_3.jpg" width="291" height="126" alt="" title=""></a>
+
+<p>
+                <div class="uk-margin uk-clearfix">
+        <div style="float:left">
+            <a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank">
+            <img src="<{PUBLIC_PATH}>static/category/<{$row['cat_pic']}>">
+            </a>
+        </div>
+        <div class="uk-margin" style="margin-left:20px; float:left">
+            <h3><a href="<{framework\core\Factory::U('home/Article/index',['id'=>$row['cat_id']])}>" target="_blank"><{$row['cat_name']}></a></h3>
+            <p><{$row['cat_desc']}></p>
+        </div>
+    </div></p>
+
+                </li>
+
+            </ul>	
+
+
+            <div class="feilei">
+
+            	<div class="fl1 fldiv">
+
+                	<a href="#"><img src="images/pic_4.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['beautiful']}></a></p>
+
+                </div>
+
+                <div class="fl2 fldiv">
+
+                	<a href="#"><img src="images/pic_5.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['category']}></a></p>
+
+                </div>
+
+                <div class="fl3 fldiv">
+
+                	<a href="#"><img src="images/pic_6.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['delicacy']}></a></p>
+
+                </div>
+
+                <div class="fl4 fldiv">
+
+                	<a href="#"><img src="images/pic_7.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['historic']}></a></p>
+
+                </div>
+
+                <div class="fl5 fldiv">
+
+                	<a href="#"><img src="images/pic_8.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['leave']}></a></p>
+
+                </div>
+
+                <div class="fl6 fldiv">
+
+                	<a href="#"><img src="images/pic_9.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['new']}></a></p>
+
+                </div>
+
+                <div class="fl7 fldiv">
+
+                	<a href="#"><img src="images/pic_10.jpg" width="75" height="76" alt="" title=""></a>
+
+                    <p><a href="#"><{$title['reply']}></a></p>
+
+                </div>
+
+            </div>
+
+            <div class="zjfc">
+
+            	<p class="p_tit1"><{$title['tourism']}></p>
+
+                <div class="picScroll-left">
+
+                    <div class="hd">
+
+                        <a class="next"><</a>
+
+                        <a class="prev">></a>
+
+                    </div>
+
+                    <div class="bd">
+
+                        <ul class="picList">
+
+     
+
+                     
+
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301619396038.jpg" width="231" height="151" /></div>
+
+                               
+
+                            </li>
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301618110413.jpg" width="231" height="151" /></div>
+
+                                
+
+                            </li>
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301611286194.jpg" width="231" height="151" /></div>
+
+                               
+
+                            </li>
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301613498694.jpg" width="231" height="151" /></div>
+
+                               
+
+                            </li>
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301614494319.jpg" width="231" height="151" /></div>
+
+                              
+
+                            </li>
+
+                                             
+
+                   <li>
+
+                                <div class="pic"><img src="images/201410301615449632.jpg" width="231" height="151" /></div>
+
+                            
+
+                            </li>
+
+                                             
+
+                        </ul>
+
+                    </div>
+
+                </div>
+
+                <script type="text/javascript">
+
+                jQuery(".picScroll-left").slide({titCell:".hd ul",mainCell:".bd ul",autoPage:true,effect:"left",autoPlay:true,vis:4,trigger:"click"});
+
+                </script>
+			
+
+
+                	
+
+            </div>
+
+		</div>
+
+		<!--content 结束--> 
+
+</div>
+
+<!--footer开始-->
+
+<div class="footer"> 
+
+	<p><a href="index.html">首页</a> | <a href="template/historic.html">历史</a> | <a href="template/beautiful.html">风景</a> | <a href="template/tourism.html">旅游</a> | <a href="template/delicacy.html">美食</a> | <a href="template/new.html">动态</a> | <a href="template/leave.html">旅游</a>| <a href="template/connection.html">联系我们</a></p>
+
+<p>Copyright &copy; 2015－2016 All Rights Reserved 版权所有 </p>
+  
+</div>
+
+
+
+<!--footer 结束--> 
+
+</body>
+
+</html>
+

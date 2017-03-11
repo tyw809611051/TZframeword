@@ -1,4 +1,8 @@
-<?php
+<?php 
 return array(
-    'dbname'    =>  '',
-);
+	'dbname'=>'blog',
+	);
+
+
+
+ ?>

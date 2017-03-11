@@ -1,0 +1,55 @@
+<{extends file="common/layout.html"}>
+<{block name="admin_content"}>
+    <div class="aw-content-wrap">
+        <form  method="post" id="settings_form" action="?m=admin&c=Topic&a=addHandle">
+        
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <ul class="nav nav-tabs">
+                        <li><a href="topic.html">话题管理</a></li>
+                        <li class="active"><a href="javascript:;">新建话题</a></li>
+                    </ul>
+                </h3>
+            </div>
+
+            <div class="tab-content mod-content">
+                <table class="table table-striped">
+                    <tbody>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">话题标题:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <input type="text" class="form-control" value="" name="topic_title">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>
+                            <div class="form-group">
+                                <span class="col-sm-4 col-xs-3 control-label">话题描述:</span>
+                                <div class="col-sm-5 col-xs-8">
+                                    <textarea name="topic_desc" class="form-control"></textarea>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+
+                    </tbody><tfoot>
+                    <tr>
+                        <td>
+                            <input type="submit"  class="btn btn-primary center-block" value="添加话题">
+                        </td>
+                    </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+        </form>
+    </div>
+
+ <{/block}>

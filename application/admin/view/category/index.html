@@ -1,0 +1,100 @@
+<{extends file="common/layout.html"}>
+<{block name="admin_content"}>
+
+    <div class="aw-content-wrap">
+	
+        <div class="mod">
+            <div class="mod-head">
+                <h3>
+                    <span class="pull-left">分类管理</span>
+                </h3>
+            </div>
+
+            <div class="tab-content mod-body">
+                <div class="alert alert-success hide error_message"></div>
+
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <thead>
+                        <tr>
+							<th>分类id</th>
+                            <th>分类标题</th>
+							<th>分类描述</th>
+							<th>分类图标</th>							
+                            <th>操作</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <form method="post" action="#" id="category_form"></form>
+                    <{foreach $cate_list as $v}>   
+                        <tr>
+							<td>
+                                <a href="#"><{$v['cat_id']}></a>
+                            </td>
+                            <td>
+                                <a href="#"><{$v['cat_name']}></a>
+                            </td>
+							<td>
+                                <a href="#"><{$v['cat_desc']}></a>
+                            </td>
+                            <td>
+                                <div class="col-sm-6 clo-xs-12 col-lg-offset-3">
+                                   <img src="<{PUBLIC_PATH}>static/category/<{$v['cat_pic']}>" alt="">
+                                </div>
+                            </td>
+							
+                            <td>
+                                <a href="<{framework\core\Factory::U('admin/Category/edit',['id'=>$v['cat_id']])}>" class="icon icon-edit md-tip" data-toggle="tooltip" data-original-title="编辑"></a>
+                                <a href="<{framework\core\Factory::U('admin/Category/delete',['id'=>$v['cat_id']])}>" onclick="return firmdelete()" class="icon icon-trash md-tip" data-toggle="tooltip"  data-original-title="删除"></a>
+                                
+                            </td>
+                    </tr>
+                    <{foreachelse}>
+                        <tr>
+                            <td colspan="3">暂无内容</td>
+                        </tr>
+                    <{/foreach}>
+                        </tbody>
+                        <tfoot class="mod-foot-center">
+
+                        <tr>
+							<!--分页显示-->
+                            <!--<td><{$cate_page}></td>-->
+                            <td colspan="2">                          
+                            <form method="post" action="http://localhost/wecenter/?/admin/ajax/save_category/" id="add_category_form">
+                               
+                                <div class="pull-right" style="margin-right: 150px">
+                                 <a class="btn-primary btn" href="<{framework\core\Factory::U('admin/Category/add')}>">添加分类</a>
+                                </div>
+                            </form>
+                            </td>
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="hide" id="target-category">
+            <option value="1">默认分类</option>    
+        </div>
+    </div>
+	<script type="text/javascript">
+      var oImg = document.getElementsByTagName('img');
+      // 给每个图片绑定移入、移除事件
+      for(var i=0;i<oImg.length;i++) {
+        oImg[i].oindex = i;
+        var owidth = oImg[i].getAttribute('width');
+        var oheight = oImg[i].getAttribute('height');
+        oImg[i].onmouseover = function() {
+           
+             this.style.transform = "scale(2.5, 2.5)";
+             this.style.transition = "all 1s";
+        }
+        oImg[i].onmouseout = function() {
+           this.style.transform = "scale(1, 1)";
+        }
+      }
+  
+    </script>
+	<{/block}>
+
